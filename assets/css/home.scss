@@ -1,0 +1,1800 @@
+/* 
+ Project 3 - cascase style sheet for home page
+ ISTE 240
+ Vito Schuster
+ 28/2/2022 
+*/
+
+
+/* fonts imported from font.google.com */
+@import url('https://fonts.googleapis.com/css2?family=Dancing+Script&family=Hubballi&family=Montserrat:wght@200;300;400;500&family=Roboto:wght@300;400;500&display=swap');
+
+/* removing unneccessary borders and decoration*/
+
+//colors
+$black: #070c1d;
+$green: rgb(125, 210, 121);
+$blue: #070c1d;
+$gray:rgb(119, 119, 119);
+
+* {
+    margin: 0;
+    padding: 0;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    scroll-behavior: smooth;
+}
+
+
+/* custom scrollbar */
+::-webkit-scrollbar {
+    width: 15px
+}
+
+::-webkit-scrollbar-track {
+    background: $blue;
+}
+
+::-webkit-scrollbar-thumb {
+    background: rgb(119, 119, 119);
+    border-radius: 8px;
+    transition: background 0.4s ease-in-out;
+}
+
+::-webkit-scrollbar-thumb:active {
+    background: $green;
+}
+
+
+::-webkit-scrollbar-track-piece {
+    max-height: 100px;
+}
+
+body {
+    background-color: rgb(243, 247, 247);
+}
+
+a {
+    text-decoration: none;
+    color: black;
+    transition: color 0.3s ease-in-out;
+
+
+    &:active {
+        color: $green;
+    }
+
+
+    &:hover {
+        color: $green;
+    }
+
+    &.a-scroll-active {
+        color: whitesmoke;
+    }
+
+}
+
+.nav-scroll-active {
+    background-color: $blue;
+    color: whitesmoke;
+    border-bottom-left-radius: 8px;
+    border-bottom-right-radius: 8px;
+}
+
+
+nav#navsmall {
+    display: none;
+}
+
+nav#navbig {
+    font-family: "Montserrat", sans-serif;
+    text-transform: uppercase;
+    position: fixed;
+    z-index: 99;
+    transition: background 0.4s ease-in-out;
+    /* smooth background change */
+
+    // class added with php for easier orientation (highlight current site)
+    a.current {
+        color: #9dca99;
+    }
+
+
+    ul {
+        width: 100vw;
+        height: 7.5vh;
+        display: flex;
+        flex-direction: row;
+        justify-content: flex-end;
+        align-items: center;
+        list-style: none;
+        padding-right: 2rem;
+        gap: 1.4rem;
+
+        li {
+
+            &:hover>ul {
+                display: block;
+            }
+
+            ul {
+                display: none;
+                position: absolute;
+                width: 100px;
+                height: 100px;
+                padding: 0;
+
+                li {
+                    padding: 0.3rem;
+                    text-align: center;
+                }
+            }
+
+            a {
+                font-size: 1.1rem;
+                color: #1A1A1A;
+
+                &.a-scroll-active {
+                    color: whitesmoke;
+                }
+            }
+
+        }
+
+    }
+}
+
+/* footer styling */
+footer {
+    font-family: 'Montserrat', sans-serif;
+    background-color: $blue;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    padding: 1.5rem 0;
+    align-items: space-around;
+    text-align: center;
+
+    ul {
+        li {
+            padding: 0 0.5rem;
+            display: inline;
+
+            a {
+                color: whitesmoke;
+
+                &:hover {
+                    text-decoration: underline;
+                }
+            }
+        }
+    }
+
+    p {
+        color: whitesmoke;
+
+        a {
+            //underline animation reference: https://www.30secondsofcode.org/css/s/hover-underline-animation
+            color: whitesmoke;
+
+            &:hover {
+                text-decoration: underline;
+                transform: scale(1.1);
+            }
+        }
+    }
+}
+
+
+
+/*setting height and width to 100% for hero image*/
+body {
+    height: 100vh;
+    width: auto;
+
+    /* spent too much time fixing invisible borders causing horizontal scroll for some reason so its fixed in this one liner :) */
+    overflow-x: hidden;
+
+    /* smooth scrolling */
+    scroll-behavior: smooth;
+}
+
+
+
+
+/* || HERO SECTION START */
+#hero {
+    /* adjusting the hero image */
+    background-image: -webkit-gradient(linear, left top, left bottom, from(rgba(0, 0, 0, 0.4)), to(rgba(0, 0, 0, 0.4))), url("../img/home-dolomites.jpg");
+    background-image: -o-linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url("../img/home-dolomites.jpg");
+    background-image: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url("../img/home-dolomites.jpg");
+    height: 100%;
+    width: 100%;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+
+    /*default font and color - i like this color :)*/
+    color: whitesmoke;
+    font-family: 'Hubballi', cursive;
+
+}
+
+
+
+/* grid container - it's easier to work with  */
+#hero .hero-container {
+    display: -ms-grid;
+    display: grid;
+    gap: 0.5rem;
+    height: 100%;
+    width: 100vw;
+
+    justify-items: center;
+    -ms-grid-columns: 1fr 0.5rem 3fr 0.5rem 1fr;
+    grid-template-columns: 1fr 3fr 1fr;
+    -ms-grid-rows: 2fr 0.5rem 1fr 0.5rem 2fr 0.5rem 0fr 0.5rem 1fr;
+    grid-template-rows: 2fr 1fr 2fr 0fr 1fr;
+    grid-template-areas:
+        '...   ...    ...'
+        '...  header  ...'
+        '...   desc   ...'
+        '... btn-text ...'
+        '...  arrow   ...';
+
+
+    .hero-text,
+    .button-text {
+        font-size: 2.1rem;
+    }
+
+}
+
+
+/* heading text adjustment - cursive font */
+#hero .hero-container .hero-header {
+
+    grid-area: header;
+    /* header grid area */
+    font-family: 'Dancing Script', cursive;
+    font-size: 5.5rem;
+}
+
+
+/* description text adjustments */
+#hero .hero-container .hero-text {
+
+    grid-area: desc;
+    /* header text grid area */
+    text-transform: uppercase;
+}
+
+
+/* button text adjustments*/
+#hero .hero-container .button-text {
+
+    grid-area: btn-text;
+    /* button grid area */
+    font-weight: 500;
+    text-transform: uppercase;
+    color: rgb(230, 228, 228);
+    text-align: center;
+}
+
+#hero .hero-container .arrow-container {
+
+    grid-area: arrow;
+
+    /* arrow grid area */
+}
+
+/* down arrow */
+#hero .hero-container .arrow-container a .arrow {
+    margin-top: -15px;
+    height: 4vw;
+    width: 4vw;
+    border: solid rgb(235, 235, 235);
+    border-width: 0 1px 1px 0;
+    /*putting right and bottom border on empty div*/
+    -ms-transform: rotate(45deg);
+    transform: rotate(45deg);
+    /* rotating it 45deg clockwise so it makes a down arrow*/
+    -webkit-transform: rotate(45deg);
+}
+
+/* arrow hover action (widen the boarders bty) */
+#hero .hero-container .arrow-container a .arrow:hover {
+    border-width: 0 3px 3px 0;
+}
+
+/* || HERO SECTION END*/
+
+/* || CARDS SECTION START */
+
+
+#cards {
+    background-color: rgb(243, 247, 247);
+    /* font-family: 'Oslo', sans-serif;
+   font-weight: 400; */
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 300;
+    height: 100%;
+}
+
+#cards .cards-container {
+    display: -ms-grid;
+    display: grid;
+    gap: 1rem;
+    height: 100%;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    justify-items: center;
+    -ms-grid-columns: 1fr 1rem 1fr 1rem 1fr 1rem 1fr 1rem 1fr 1rem 1fr;
+    grid-template-columns: repeat(6, 1fr);
+    -ms-grid-rows: 2fr 1rem 4fr 1rem 6fr 1rem 10fr 1rem 10fr 1rem 1fr;
+    grid-template-rows: 2fr 3fr 6fr 10fr 10fr 1fr;
+    grid-template-areas:
+        '... ... ... ... ... ...'
+        '... header header header header ...'
+        '... desc desc desc desc ...'
+        '... activities regions location accomodation ...'
+        '... cuisine gallery must-do history ...'
+        '... ... ... ... ... ...';
+}
+
+/* text styling */
+#cards .cards-container .cards-header {
+
+    -ms-grid-column-span: 7;
+    grid-area: header;
+    font-size: 4rem;
+    /* text-transform: uppercase; */
+
+}
+
+#cards .cards-container .text {
+
+    -ms-grid-column-span: 7;
+    grid-area: desc;
+    font-size: 1.25rem;
+    font-family: 'Montserrat', sans-serif;
+}
+
+
+
+/* setting cards to the corresponding grid area */
+#cards .cards-container .card-link1 {
+
+    grid-area: activities;
+}
+
+#cards .cards-container .card-link2 {
+
+    grid-area: regions;
+}
+
+#cards .cards-container .card-link3 {
+
+    grid-area: location;
+}
+
+#cards .cards-container .card-link4 {
+
+    grid-area: accomodation;
+}
+
+#cards .cards-container .card-link5 {
+
+    grid-area: cuisine;
+}
+
+#cards .cards-container .card-link6 {
+
+    grid-area: gallery;
+}
+
+#cards .cards-container .card-link7 {
+
+    grid-area: must-do;
+}
+
+#cards .cards-container .card-link8 {
+
+    grid-area: history;
+}
+
+/* cards styling */
+#cards .cards-container a {
+    font-size: 1.7rem;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+
+    border-radius: 10px;
+    width: 270px;
+    height: 230px;
+    background-color: white;
+    transition: all 0.25s ease-in-out;
+    box-shadow: 0 0.2rem 1rem rgba(149, 157, 165, 0.15);
+}
+
+/* hover animation  */
+#cards .cards-container a:hover {
+    background-color: rgba(125, 210, 121, 0.40);
+    color: #070c1d;
+    font-weight: 500;
+    transform: scale(1.04);
+    transform: translateY(-6px);
+}
+
+/* centering icons */
+#cards .cards-container a .card {
+    text-align: center;
+}
+
+/* || CARDS SECTION END */
+/* || HOME PAGE END */
+
+
+/* || ACTIVITIES PAGE START*/
+
+/* adjusting body font and bgcolor */
+#activities {
+    font-family: 'Montserrat', sans-serif;
+    background-color: rgb(243, 247, 247);
+    height: auto;
+}
+
+/* displaying the page as grid because it keeps me sane  */
+#activities .activities-container {
+    height: 92vh;
+    display: -ms-grid;
+    display: grid;
+    grid-template-columns: 1fr 3fr 2.5fr 1fr;
+    grid-template-rows: 1fr 2fr 2fr 3fr 3fr;
+    grid-template-areas:
+        ' ... ... ... ... '
+        '... ... ... ...'
+        '. header header .'
+        '. text picture .'
+        '. arrow arrow .';
+
+}
+
+
+/* setting the header to grid pos and centering it */
+#activities .activities-container .activities-header {
+
+    -ms-grid-column-span: 2;
+    grid-area: header;
+    justify-self: start;
+    align-self: center;
+}
+
+/* styling header  */
+#activities .activities-container h1 {
+    font-size: 3.5rem;
+    padding-bottom: 1rem;
+    text-transform: capitalize;
+    /* text-decoration: underline; */
+}
+
+/* setting to corresponding grid area (the paragraphs)  */
+#activities .activities-container .text-style {
+    grid-area: text;
+}
+
+.text-style p {
+    grid-area: text;
+    font-weight: 400;
+    font-size: 1.25rem;
+    font-family: 'Montserrat', sans-serif;
+    padding: 0.5rem 0 0.5rem 0;
+}
+
+/* setting the pic to grid area */
+#activities .activities-container .image-ski {
+    grid-area: picture;
+    text-align: end;
+}
+
+/* making image responsive and of course i can not not put a border radius  */
+#activities .activities-container .image-ski img {
+    max-width: 82%;
+    border-radius: 10px;
+    border: 1px solid rgb(218, 218, 218);
+}
+
+/* i like arrows so i put one here again - it point to the three pages following  */
+#activities .activities-container .arrow-container {
+
+    -ms-grid-column-span: 2;
+    grid-area: arrow;
+    justify-self: center;
+}
+
+/* arrow again */
+#activities .activities-container a .arrow {
+    height: 3.5vw;
+    width: 3.5vw;
+    border: solid rgb(8, 8, 8);
+    border-width: 0 1px 1px 0;
+    /*putting right and bottom border on empty div*/
+    -ms-transform: rotate(45deg);
+    transform: rotate(45deg);
+    /* rotating it 45deg clockwise so it makes a down arrow*/
+    -webkit-transform: rotate(45deg);
+}
+
+#activities .activities-container .arrow-container a .arrow:hover {
+    border-width: 0 3px 3px 0;
+}
+
+
+/* || ACTIVITIES LINK PAGE START */
+
+/* grid for full size links (pictures)  */
+#activities .activities-link-container {
+    display: -ms-grid;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    height: 80vh;
+    justify-items: center;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    overflow: hidden;
+    /*this is done to prevent overflow on animations - again a simple fix */
+}
+
+/* adjusting size and background for cover photos  */
+#activities .activities-link-container a {
+    width: 100%;
+    height: 100%;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+}
+
+/*Cover header style*/
+#activities .activities-link-container a .link-image h2 {
+    color: white;
+    font-size: 3rem;
+    text-transform: uppercase;
+    font-weight: 300;
+}
+
+
+/* I know there is code duplication but i am too lazy to think of another way so here is this */
+
+/* PICTURE LINKS - changing the backgrounds and adding hover effects (playing with rgbA) */
+.activities-link-container a:nth-child(1) {
+    background-image: -webkit-gradient(linear, left top, left bottom, from(rgba(0, 0, 0, 0.85)), to(rgba(0, 0, 0, 0.8))), url("../img/mountain-biker-cover.jpg");
+    background-image: -o-linear-gradient(rgba(0, 0, 0, 0.85), rgba(0, 0, 0, 0.8)), url("../img/mountain-biker-cover.jpg");
+    background-image: linear-gradient(rgba(0, 0, 0, 0.85), rgba(0, 0, 0, 0.8)), url("../img/mountain-biker-cover.jpg");
+    transition: all 0.5s ease-in-out;
+}
+
+.activities-link-container a:nth-child(1):hover {
+    background-image: -webkit-gradient(linear, left top, left bottom, from(rgba(0, 0, 0, 0.3)), to(rgba(0, 0, 0, 0.3))), url("../img/mountain-biker-cover.jpg");
+    background-image: -o-linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), url("../img/mountain-biker-cover.jpg");
+    background-image: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), url("../img/mountain-biker-cover.jpg");
+    -webkit-transform: translateY(-10px);
+    -ms-transform: translateY(-10px);
+    transform: translateY(-10px);
+    -webkit-transform: scale(1.03);
+    -ms-transform: scale(1.03);
+    transform: scale(1.02);
+}
+
+.activities-link-container a:nth-child(2) {
+    background-image: -webkit-gradient(linear, left top, left bottom, from(rgba(0, 0, 0, 0.85)), to(rgba(0, 0, 0, 0.8))), url("../img/skier-cover.jpg");
+    background-image: -o-linear-gradient(rgba(0, 0, 0, 0.85), rgba(0, 0, 0, 0.8)), url("../img/skier-cover.jpg");
+    background-image: linear-gradient(rgba(0, 0, 0, 0.85), rgba(0, 0, 0, 0.8)), url("../img/skier-cover.jpg");
+    transition: all 0.5s ease-in-out;
+}
+
+.activities-link-container a:nth-child(2):hover {
+    background-image: -webkit-gradient(linear, left top, left bottom, from(rgba(0, 0, 0, 0.3)), to(rgba(0, 0, 0, 0.3))), url("../img/skier-cover.jpg");
+    background-image: -o-linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), url("../img/skier-cover.jpg");
+    background-image: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), url("../img/skier-cover.jpg");
+    -webkit-transform: translateY(-10px);
+    -ms-transform: translateY(-10px);
+    transform: translateY(-10px);
+    -webkit-transform: scale(1.03);
+    -ms-transform: scale(1.03);
+    transform: scale(1.02);
+
+}
+
+.activities-link-container a:nth-child(3) {
+    background-image: -webkit-gradient(linear, left top, left bottom, from(rgba(0, 0, 0, 0.85)), to(rgba(0, 0, 0, 0.8))), url("../img/rafting-cover.jpg");
+    background-image: -o-linear-gradient(rgba(0, 0, 0, 0.85), rgba(0, 0, 0, 0.8)), url("../img/rafting-cover.jpg");
+    background-image: linear-gradient(rgba(0, 0, 0, 0.85), rgba(0, 0, 0, 0.8)), url("../img/rafting-cover.jpg");
+    transition: all 0.5s ease-in-out;
+}
+
+.activities-link-container a:nth-child(3):hover {
+    background-image: -webkit-gradient(linear, left top, left bottom, from(rgba(0, 0, 0, 0.3)), to(rgba(0, 0, 0, 0.3))), url("../img/rafting-cover.jpg");
+    background-image: -o-linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), url("../img/rafting-cover.jpg");
+    background-image: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), url("../img/rafting-cover.jpg");
+    -webkit-transform: translateY(-10px);
+    -ms-transform: translateY(-10px);
+    transform: translateY(-10px);
+    -webkit-transform: scale(1.03);
+    -ms-transform: scale(1.03);
+    transform: scale(1.02);
+}
+
+
+/* || ACTIVITIES LINK PAGE END */
+
+/* || ACTIVITIES PAGE END*/
+
+/* MTB PAGE START */
+
+
+
+/* SPORTS hero START */
+
+/* || SPORTS TAG FOR 3 PAGES (BIKE,SKI,OTHER SPORTS) */
+
+/* centering a video - this took a long time to do */
+#sports {
+    /* setting height and width to auto so browser doesnt do any funny stuff */
+    height: auto;
+    width: auto;
+    margin: 0;
+    font-family: 'Montserrat', sans-serif;
+}
+
+/* full size video container */
+.sports-container {
+    position: relative;
+
+    min-width: 100%;
+    min-height: 100%;
+    background-color: black;
+}
+
+/* min-width of video 100% */
+.sports-container #bg-video {
+    -o-object-fit: cover;
+    object-fit: cover;
+    min-width: 100%;
+    /*video width */
+    max-height: 99.6vh;
+    /*video height for some reason 100 was overflowing */
+    background-attachment: fixed;
+    z-index: 2;
+    /*making the video appear over the bg */
+    opacity: 35%;
+    /*lowering the opacity*/
+
+
+}
+
+/* nav END */
+
+/* header style */
+#sports .sports-container h1 {
+    /*all this code just to center a div .. */
+    position: absolute;
+    top: 41%;
+    left: 50%;
+    -webkit-transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+    /*finally over*/
+
+    color: white;
+    text-transform: uppercase;
+    font-size: 5.6rem;
+    font-weight: 300;
+
+}
+
+/* the code below is just centering the divs with absolute pos and styling them accordingly */
+#sports .sports-container #top-cover-text {
+    position: absolute;
+    top: 51%;
+    left: 50%;
+    -webkit-transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+
+    /* typography */
+    color: whitesmoke;
+    font-size: 2rem;
+    font-weight: 300;
+    letter-spacing: 1px;
+}
+
+#sports .sports-container #bottom-cover-text {
+    position: absolute;
+    top: 80%;
+    left: 50%;
+    -webkit-transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+
+    /* typography */
+    color: whitesmoke;
+    font-size: 1.5rem;
+    font-weight: 200;
+}
+
+
+
+#sports .sports-container .arrow-container {
+    position: absolute;
+    top: 85%;
+    left: 50%;
+    -webkit-transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+}
+
+/*another arrow :)*/
+#sports .sports-container .arrow-container a {
+    position: relative;
+}
+
+/* arrow  */
+#sports .sports-container a .arrow {
+    height: 3.5vw;
+    width: 3.5vw;
+    border: solid rgb(218, 218, 218);
+    border-width: 0 1px 1px 0;
+    /*putting right and bottom border on empty div*/
+    -ms-transform: rotate(45deg);
+    transform: rotate(45deg);
+    /* rotating it 45deg clockwise so it makes a down arrow*/
+    -webkit-transform: rotate(45deg);
+}
+
+#sports .sports-container .arrow-container a .arrow:hover {
+    border-width: 0 3px 3px 0;
+}
+
+/* sports hero END */
+
+
+/*sports lower section start */
+
+/* grid for easier positioning */
+#sports .sports-text-container {
+    display: -ms-grid;
+    display: grid;
+    gap: 1rem;
+    -ms-grid-columns: 1fr 1rem 3fr 1rem 3fr 1rem 1fr;
+    grid-template-columns: 1fr 3fr 3fr 1fr;
+    -ms-grid-rows: 1fr 1rem 1fr 1rem 5fr 1rem 1fr 1rem 1fr 1rem 5fr 1rem 1fr;
+    grid-template-rows: 1fr 1fr 5fr 1fr 1fr 5fr 1fr;
+    grid-template-areas:
+        '. ... ... .'
+        '. header1 header1 .'
+        '. text1 img1 .'
+        '. ... ... .'
+        '. header2 header2 .'
+        '. img2 text2  .'
+        '. ... ... .';
+    /*grid template */
+}
+
+#sports .sports-text-container .sports-text-header1 {
+
+    -ms-grid-column-span: 3;
+    grid-area: header1;
+}
+
+#sports .sports-text-container .sports-text1 {
+
+    grid-area: text1;
+    padding-right: 0.5rem;
+}
+
+#sports .sports-text-container .sports-text1 ul {
+    font-size: 1.2rem;
+    padding-left: 2.2rem;
+    padding-bottom: 0.8rem;
+    padding-top: 0;
+}
+
+
+
+#sports .sports-text-container .sports-img1 {
+    grid-area: img1;
+}
+
+#sports .sports-text-container .sports-text-header2 {
+    -ms-grid-column-span: 3;
+    grid-area: header2;
+}
+
+#sports .sports-text-container .sports-img2 {
+    grid-area: img2;
+}
+
+#sports .sports-text-container .sports-text2 {
+    grid-area: text2;
+    padding-left: 1rem;
+}
+
+
+#sports .sports-text-container .sports-text2 ul {
+    font-size: 1.2rem;
+    padding-left: 2.2rem;
+}
+
+
+#sports .sports-text-container .h2 {
+    font-size: 2.5rem;
+    font-weight: 400;
+}
+
+/*adjusting the images positions, border radius, margin */
+#sports .sports-text-container div img {
+    margin-top: 0.5rem;
+    max-width: 100%;
+    border-radius: 10px;
+}
+
+#sports .sports-text-container .sports-img1 img {
+    max-width: 100%;
+    border-radius: 10px;
+}
+
+#sports .sports-text-container .other-img1 img {
+    max-width: 90%;
+}
+
+#sports .sports-text-container .other-img2 img {
+    max-width: 95%;
+
+}
+
+
+
+
+
+
+
+/* SPORTS lower section end */
+
+
+
+/* || SPORTS PAGES END */
+
+
+
+/* || REGIONS PAGE START */
+
+
+
+
+/* grid for full size links (pictures)  */
+#regions-links.regions-link-container {
+    display: -ms-grid;
+    display: grid;
+    height: 100%;
+    grid-template-columns: repeat(auto-fit, minmax(360px, 1fr));
+    grid-template-rows: repeat(2, 600px);
+    justify-items: center;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+}
+
+/* adjusting size and background for cover photos  */
+.regions-link-container a {
+    width: 100%;
+    min-height: 100%;
+    background-size: cover;
+    background-position: center;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center
+}
+
+/*Cover header style*/
+.regions-link-container a .link-image h2 {
+    font-size: 2rem;
+    font-weight: 300;
+}
+
+
+
+/* duplicated code below is for adding bg images and hover effects for the regions
+this was the fastest way to do it in my head, i know it's ugly */
+.regions-link-container a:nth-child(1) {
+    background: -webkit-gradient(linear, left top, left bottom, from(rgba(0, 0, 0, 0.85)), to(rgba(0, 0, 0, 0.8))), url("../img/kronplatz_.jpg");
+    background: -o-linear-gradient(rgba(0, 0, 0, 0.85), rgba(0, 0, 0, 0.8)), url("../img/kronplatz_.jpg");
+    background: linear-gradient(rgba(0, 0, 0, 0.85), rgba(0, 0, 0, 0.8)), url("../img/kronplatz_.jpg");
+
+}
+
+.regions-link-container a:nth-child(1):hover {
+    background: -webkit-gradient(linear, left top, left bottom, from(rgba(0, 0, 0, 0.3)), to(rgba(0, 0, 0, 0.3))), url("../img/kronplatz_.jpg");
+    background: -o-linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), url("../img/kronplatz_.jpg");
+    background: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), url("../img/kronplatz_.jpg");
+    -webkit-transform: translateY(-10px);
+    -ms-transform: translateY(-10px);
+    transform: translateY(-10px);
+    -webkit-transform: scale(1.03);
+    -ms-transform: scale(1.03);
+    transform: scale(1.03);
+}
+
+.regions-link-container a:nth-child(2) {
+    background: -webkit-gradient(linear, left top, left bottom, from(rgba(0, 0, 0, 0.85)), to(rgba(0, 0, 0, 0.8))), url("../img/val-gardena_.jpg");
+    background: -o-linear-gradient(rgba(0, 0, 0, 0.85), rgba(0, 0, 0, 0.8)), url("../img/val-gardena_.jpg");
+    background: linear-gradient(rgba(0, 0, 0, 0.85), rgba(0, 0, 0, 0.8)), url("../img/val-gardena_.jpg");
+
+}
+
+.regions-link-container a:nth-child(2):hover {
+    background: -webkit-gradient(linear, left top, left bottom, from(rgba(0, 0, 0, 0.3)), to(rgba(0, 0, 0, 0.3))), url("../img/val-gardena.jpg");
+    background: -o-linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), url("../img/val-gardena_.jpg");
+    background: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), url("../img/val-gardena_.jpg");
+    -webkit-transform: translateY(-10px);
+    -ms-transform: translateY(-10px);
+    transform: translateY(-10px);
+    -webkit-transform: scale(1.03);
+    -ms-transform: scale(1.03);
+    transform: scale(1.03);
+
+}
+
+.regions-link-container a:nth-child(3) {
+    background: -webkit-gradient(linear, left top, left bottom, from(rgba(0, 0, 0, 0.85)), to(rgba(0, 0, 0, 0.8))), url("../img/alta-badia_.jpg");
+    background: -o-linear-gradient(rgba(0, 0, 0, 0.85), rgba(0, 0, 0, 0.8)), url("../img/alta-badia_.jpg");
+    background: linear-gradient(rgba(0, 0, 0, 0.85), rgba(0, 0, 0, 0.8)), url("../img/alta-badia_.jpg");
+
+}
+
+.regions-link-container a:nth-child(3):hover {
+    background: -webkit-gradient(linear, left top, left bottom, from(rgba(0, 0, 0, 0.3)), to(rgba(0, 0, 0, 0.3))), url("../img/alta-badia_.jpg");
+    background: -o-linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), url("../img/alta-badia_.jpg");
+    background: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), url("../img/alta-badia_.jpg");
+    -webkit-transform: translateY(-10px);
+    -ms-transform: translateY(-10px);
+    transform: translateY(-10px);
+    -webkit-transform: scale(1.03);
+    -ms-transform: scale(1.03);
+    transform: scale(1.03);
+}
+
+.regions-link-container a:nth-child(4) {
+    background: -webkit-gradient(linear, left top, left bottom, from(rgba(0, 0, 0, 0.85)), to(rgba(0, 0, 0, 0.8))), url("../img/cortina-dampezzo_.jpg");
+    background: -o-linear-gradient(rgba(0, 0, 0, 0.85), rgba(0, 0, 0, 0.8)), url("../img/cortina-dampezzo_.jpg");
+    background: linear-gradient(rgba(0, 0, 0, 0.85), rgba(0, 0, 0, 0.8)), url("../img/cortina-dampezzo_.jpg");
+
+}
+
+.regions-link-container a:nth-child(4):hover {
+    background: -webkit-gradient(linear, left top, left bottom, from(rgba(0, 0, 0, 0.3)), to(rgba(0, 0, 0, 0.3))), url("../img/cortina-dampezzo_.jpg");
+    background: -o-linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), url("../img/cortina-dampezzo_.jpg");
+    background: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), url("../img/cortina-dampezzo_.jpg");
+    -webkit-transform: translateY(-10px);
+    -ms-transform: translateY(-10px);
+    transform: translateY(-10px);
+    -webkit-transform: scale(1.03);
+    -ms-transform: scale(1.03);
+    transform: scale(1.03);
+}
+
+.regions-link-container a:nth-child(5) {
+    background: -webkit-gradient(linear, left top, left bottom, from(rgba(0, 0, 0, 0.85)), to(rgba(0, 0, 0, 0.8))), url("../img/3zinnen.jpg");
+    background: -o-linear-gradient(rgba(0, 0, 0, 0.85), rgba(0, 0, 0, 0.8)), url("../img/3zinnen.jpg");
+    background: linear-gradient(rgba(0, 0, 0, 0.85), rgba(0, 0, 0, 0.8)), url("../img/3zinnen.jpg");
+
+}
+
+.regions-link-container a:nth-child(5):hover {
+    background: -webkit-gradient(linear, left top, left bottom, from(rgba(0, 0, 0, 0.3)), to(rgba(0, 0, 0, 0.3))), url("../img/3zinnen.jpg");
+    background: -o-linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), url("../img/3zinnen.jpg");
+    background: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), url("../img/3zinnen.jpg");
+    -webkit-transform: translateY(-10px);
+    -ms-transform: translateY(-10px);
+    transform: translateY(-10px);
+    -webkit-transform: scale(1.03);
+    -ms-transform: scale(1.03);
+    transform: scale(1.03);
+}
+
+.regions-link-container a:nth-child(6) {
+    background: -webkit-gradient(linear, left top, left bottom, from(rgba(0, 0, 0, 0.85)), to(rgba(0, 0, 0, 0.8))), url("../img/val-di-fassa.jpg");
+    background: -o-linear-gradient(rgba(0, 0, 0, 0.85), rgba(0, 0, 0, 0.8)), url("../img/val-di-fassa.jpg");
+    background: linear-gradient(rgba(0, 0, 0, 0.85), rgba(0, 0, 0, 0.8)), url("../img/val-di-fassa.jpg");
+
+}
+
+.regions-link-container a:nth-child(6):hover {
+    background: -webkit-gradient(linear, left top, left bottom, from(rgba(0, 0, 0, 0.3)), to(rgba(0, 0, 0, 0.3))), url("../img/val-di-fassa.jpg");
+    background: -o-linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), url("../img/val-di-fassa.jpg");
+    background: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), url("../img/val-di-fassa.jpg");
+    -webkit-transform: translateY(-10px);
+    -ms-transform: translateY(-10px);
+    transform: translateY(-10px);
+    -webkit-transform: scale(1.03);
+    -ms-transform: scale(1.03);
+    transform: scale(1.03);
+}
+
+.regions-link-container a:nth-child(7) {
+    background: -webkit-gradient(linear, left top, left bottom, from(rgba(0, 0, 0, 0.85)), to(rgba(0, 0, 0, 0.8))), url("../img/alpe-di-siusi.jpeg");
+    background: -o-linear-gradient(rgba(0, 0, 0, 0.85), rgba(0, 0, 0, 0.8)), url("../img/alpe-di-siusi.jpeg");
+    background: linear-gradient(rgba(0, 0, 0, 0.85), rgba(0, 0, 0, 0.8)), url("../img/alpe-di-siusi.jpeg");
+
+}
+
+.regions-link-container a:nth-child(7):hover {
+    background: -webkit-gradient(linear, left top, left bottom, from(rgba(0, 0, 0, 0.3)), to(rgba(0, 0, 0, 0.3))), url("../img/alpe-di-siusi.jpeg");
+    background: -o-linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), url("../img/alpe-di-siusi.jpeg");
+    background: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), url("../img/alpe-di-siusi.jpeg");
+    -webkit-transform: translateY(-10px);
+    -ms-transform: translateY(-10px);
+    transform: translateY(-10px);
+    -webkit-transform: scale(1.03);
+    -ms-transform: scale(1.03);
+    transform: scale(1.03);
+}
+
+.regions-link-container a:nth-child(8) {
+    background: -webkit-gradient(linear, left top, left bottom, from(rgba(0, 0, 0, 0.85)), to(rgba(0, 0, 0, 0.8))), url("../img/marmolada.jpg");
+    background: -o-linear-gradient(rgba(0, 0, 0, 0.85), rgba(0, 0, 0, 0.8)), url("../img/marmolada.jpg");
+    background: linear-gradient(rgba(0, 0, 0, 0.85), rgba(0, 0, 0, 0.8)), url("../img/marmolada.jpg");
+
+}
+
+.regions-link-container a:nth-child(8):hover {
+    background: -webkit-gradient(linear, left top, left bottom, from(rgba(0, 0, 0, 0.3)), to(rgba(0, 0, 0, 0.3))), url("../img/marmolada.jpg");
+    background: -o-linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), url("../img/marmolada.jpg");
+    background: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), url("../img/marmolada.jpg");
+    -webkit-transform: translateY(-10px);
+    -ms-transform: translateY(-10px);
+    transform: translateY(-10px);
+    -webkit-transform: scale(1.03);
+    -ms-transform: scale(1.03);
+    transform: scale(1.03);
+}
+
+@for $i from 1 to 9 {
+    .regions-link-container a:nth-child(#{$i}) {
+        transition: transform 0.5s ease-in-out;
+    }
+
+    .regions-link-container a:nth-child(#{$i}):hover {
+        transform: scale(1.024);
+    }
+
+}
+
+
+/*regions picture styling*/
+.region .activities-container #image-region {
+    grid-area: picture;
+    text-align: center;
+    text-align: end;
+    -ms-grid-row-align: center;
+    align-self: center;
+}
+
+/* making image responsive and of course i can not not put a border radius  */
+.region .activities-container #image-region img {
+    -webkit-transform: scale(1.05);
+    -ms-transform: scale(1.05);
+    transform: scale(1.05);
+    border-radius: 10px;
+    width: 100%;
+    border: 1px solid rgb(218, 218, 218);
+}
+
+/* || REGIONS PAGE END */
+
+
+
+
+/* || LOCATION PAGE START */
+/* #activities {
+    font-family: 'Montserrat', sans-serif;
+    background-color: rgb(243, 247, 247);
+    height: auto;
+} */
+
+
+
+/* minor adjustments for the iFrame map embed - this a pain to deal with */
+.location .embed-map {
+    width: 97%;
+    height: 90%;
+    margin-left: 1.85rem;
+    margin-bottom: 1rem;
+}
+
+.location .embed-map iframe {
+    width: 100%;
+    height: 88vh;
+    border-radius: 10px;
+}
+
+.location .arrow-container {
+    margin-top: 5%;
+}
+
+/* || LOCATION PAGE END */
+
+/* 2 PAGES  ACCOMODATION, CUISINE*/
+.wrapper {
+    background-color: rgb(243, 247, 247);
+    /* removing unneccessary border and setting width and height to auto so browser doens't do any fun stuff */
+    height: auto;
+    width: auto;
+    margin: 0;
+    font-family: 'Montserrat', sans-serif;
+
+    /*setting the grid for the page */
+    display: grid;
+    gap: 0.5rem;
+    grid-template-columns: 1.5fr 2fr 2fr 1.5fr;
+    grid-template-rows: 1fr 2fr 1fr 6fr 1fr 1fr 6fr 1fr;
+    /*grid template */
+    grid-template-areas:
+        '... ... ... ...'
+        '. header icon1 .'
+        '. header1 header1 .'
+        '. text1 img1 .'
+        '. ... ... .'
+        '. header2 header2 .'
+        '. img2 text2  .'
+        '. ... ... .';
+}
+
+/*setting the items to the templete */
+
+/*fixing the nav */
+
+/* adjusting nav for other pages - it's bugged :( */
+
+
+
+
+/* setting alignment and grid areas below */
+.wrapper header {
+    grid-area: header;
+    -ms-grid-row-align: center;
+    align-self: center;
+}
+
+.wrapper #icon1 {
+    grid-area: icon1;
+    -ms-grid-column-align: center;
+    justify-self: center;
+    -ms-grid-row-align: center;
+    align-self: center;
+}
+
+.wrapper #h2a {
+    -ms-grid-column-span: 3;
+    grid-area: header1;
+    align-self: flex-end;
+    padding-bottom: 0.5rem;
+}
+
+.wrapper #text-style1 {
+    grid-area: text1;
+    padding-right: 0.5rem;
+}
+
+.wrapper #img1 {
+    grid-area: img1;
+    align-self: center;
+    justify-self: center;
+}
+
+.wrapper #h2b {
+    -ms-grid-column-span: 3;
+    grid-area: header2;
+    align-self: flex-end;
+}
+
+.wrapper #img2 {
+
+    grid-area: img2;
+    align-self: center;
+    justify-self: center;
+}
+
+.wrapper #text-style2 {
+
+    grid-area: text2;
+    align-self: center;
+    padding-left: 2rem;
+}
+
+/*header size */
+header h1 {
+    font-size: 4rem;
+}
+
+/*h2 size */
+.wrapper .h2 h2 {
+    font-size: 2rem;
+    font-weight: 500;
+}
+
+/* making the images responsive and nice looking*/
+.wrapper .img-style img {
+    max-width: 100%;
+    border-radius: 10px;
+}
+
+
+/* || 2 PAGES  ACCOMODATION, CUISINE END*/
+
+/* || IMAGE GALLERY START*/
+
+#gallery {
+    font-family: 'Montserrat', sans-serif;
+}
+
+
+#gallery header {
+    position: relative;
+    top: 2%;
+    margin-left: 5rem;
+
+}
+
+
+
+/* image grid */
+.gallery-wrapper {
+    display: -ms-grid;
+    display: grid;
+    gap: 1rem;
+    margin: 3% 3% 3% 3%;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    grid-auto-rows: 240px;
+}
+
+
+
+/* styling the photos themselves */
+.gallery-wrapper .card {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    height: 100%;
+    width: 100%;
+    overflow: hidden;
+    border-radius: 5px;
+    -webkit-transition: all 400ms;
+    -o-transition: all 400ms;
+    transition: all 400ms;
+
+}
+
+/*the wide card is 2 colums wide */
+.gallery-wrapper .card-wide {
+    -ms-grid-column-span: 2;
+    grid-column: span 2;
+}
+
+/*the tall card is 2 rows wide */
+.gallery-wrapper .card-tall {
+    -ms-grid-row-span: 2;
+    grid-row: span 2;
+}
+
+/* animation for card */
+.gallery-wrapper .card:hover {
+    -webkit-transform: translate(-3px) scale(1.05);
+    -ms-transform: translate(-3px) scale(1.05);
+    transform: translate(-3px) scale(1.05);
+}
+
+
+/* || REFERENCES Page start */
+
+.references-container {
+    display: -ms-grid;
+  
+    display: grid;
+    gap: 1rem;
+    -ms-grid-columns: 2fr 1rem 4fr 1rem 2fr;
+    grid-template-columns: 2fr 4fr 2fr;
+    -ms-grid-rows: 1fr 1rem 2fr 1rem 20fr;
+    grid-template-rows: 1fr 2fr 20fr;
+    grid-template-areas:
+        '. . . '
+        '. header . '
+        '. list .';
+}
+
+.references-grid {
+    font-family: 'Montserrat', sans-serif;
+    display: grid;
+    margin-left: 20%;
+    margin-right: 20%;
+    gap: 1rem;
+    justify-content:center;
+    grid-template-rows: repeat(autofit,minmax(min-content,max-content));
+
+    .list {
+        display: grid;
+        gap: 0.2rem;
+        font-family: 'Montserrat', sans-serif;
+        margin-left: 20%;
+        margin-right: 20%;
+        grid-template-rows: repeat(autofit,minmax(min-content,max-content));
+        justify-content:center;
+
+        ul {
+            max-width: 70%;
+            font-family: 'Montserrat', sans-serif;
+        }
+    }
+}
+
+
+
+
+.references-container h2 {
+    padding-top: 1rem;
+}
+
+.references-container .list ul {
+    padding-left: 1rem;
+}
+
+.references-container .list ul li {
+    padding-top: 0.25rem;
+    padding-bottom: 0.25rem;
+}
+
+.references-container header {
+    grid-area: header;
+}
+
+.references-container .list {
+    grid-area: list;
+}
+
+/* || REFERENCES Page end */
+
+
+/* styling of the comments */
+
+
+.comments-header {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex: 0 1 auto;
+    padding: 2rem 0 1.5rem 0;
+    gap: 7.5rem;
+    flex-direction: row;
+
+    h1 {
+        font-family: 'Montserrat', sans-serif;
+        font-size: 4rem;
+        padding: 4rem 0 1.5rem 0
+    }
+
+    img {
+        padding-top: 2.5rem;
+    }
+}
+
+.comments-container {
+    font-family: 'Montserrat', sans-serif;
+    display: grid;
+    grid-template-rows: repeat(auto-fit, minmax(50px, 1fr));
+    justify-content: center;
+    padding-bottom: 2rem;
+
+    h1 {
+        // font-family: 'Montserrat', sans-serif;
+        // text-align: center;
+        // font-size: 4rem;
+        // padding: 4rem 0 1.5rem 0;
+    }
+
+    p {
+        padding: 0.3rem 0 1rem 0;
+    }
+}
+
+
+/* comments form styling */
+form {
+    font-family: 'Montserrat', sans-serif;
+    display: grid;
+    gap: 0.5rem;
+    grid-template-rows: repeat(auto-fit, minmax(min-content, max-content));
+    justify-content: center;
+    margin-bottom: 2rem;
+
+    input {
+        font-family: 'Montserrat', sans-serif;
+    }
+
+    h3 {
+        padding-top: 1rem;
+        font-size: 1.5rem;
+    }
+
+    p {
+        margin-top: -0.4rem;
+        padding-bottom: 0.8rem;
+    }
+
+    textarea {
+        font-family: 'Montserrat', sans-serif;
+        background-color: rgba(222, 222, 222, 0.51);
+        border: none;
+        border-radius: 6px;
+        padding: 0.5rem 0 0 0.8rem;
+
+        &::placeholder {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1rem;
+            /* top | right | bottom | left */
+        }
+    }
+
+    span {
+        display: flex;
+        gap: 0.5rem;
+        flex-shrink: 0;
+
+        input {
+            width: 32.4%;
+            border-radius: 5px;
+            height: 2rem;
+            background-color: rgba(222, 222, 222, 0.51);
+            border: none;
+            padding-left: 0.5rem;
+
+            &::placeholder {
+                font-family: 'Montserrat', sans-serif;
+            }
+        }
+
+    }
+
+    label input {
+        float: left;
+        height: 100%;
+        margin: 0 0.5rem;
+    }
+
+    #submit {
+        font-family: 'Montserrat', sans-serif;
+        width: 18%;
+        height: 2.2rem;
+        font-size: 1rem;
+        color: rgb(255, 255, 255);
+        margin-top: 1rem;
+        border: none;
+        background-color: rgba(125, 210, 121, 0.9);
+        border-radius: 8px;
+    }
+
+}
+
+//form validation class
+.invalid {
+    background-color: rgba(221, 51, 51, 0.173);
+}
+
+@media only screen and (max-width: 1124px) {
+
+    /* menu nav hamburger end */
+
+    /* menu nav start */
+    nav#navbig {
+        display: none;
+    }
+
+    nav#navsmall {
+        font-family: 'Montserrat', sans-serif;
+        display: block;
+    }
+
+    #menuToggle {
+        display: block;
+        position: fixed;
+
+        padding: 30px;
+
+        z-index: 1;
+
+        -webkit-user-select: none;
+        user-select: none;
+    }
+
+    #menuToggle a {
+        text-decoration: none;
+        color: #ffffff;
+
+        transition: color 0.3s ease;
+    }
+
+    #menuToggle a:nth-of-type(1):hover {
+        color: #eaeaea;
+    }
+
+    #menuToggle a:nth-of-type(2):hover {
+        color: #eaeaea;
+    }
+
+    #menuToggle a:nth-of-type(3):hover {
+        color: #eaeaea;
+    }
+
+    #menuToggle a:nth-of-type(4):hover {
+        color: #eaeaea;
+    }
+
+    #menuToggle input {
+        display: block;
+        position: absolute;
+        width: 25px;
+        height: 20px;
+
+        margin: 0;
+        padding: 20px;
+
+        cursor: pointer;
+
+        opacity: 0;
+        /* Hides the checkbox */
+        z-index: 2;
+        /* Places the checkbox over the hamburger icon */
+
+        -webkit-touch-callout: none;
+    }
+
+    /*  Styling the hamburger */
+    #menuToggle span {
+        display: block;
+        width: 18px;
+        height: 2px;
+        margin-bottom: 4px;
+        position: relative;
+
+        background: #9d99a3;
+        border-radius: 3px;
+
+        z-index: 1;
+
+        transform-origin: 4px 0px;
+
+        transition: transform 0.5s cubic-bezier(0.77, 0.2, 0.05, 1.0),
+            /* was 0.5s */
+            background 0.5s cubic-bezier(0.77, 0.2, 0.05, 1.0),
+            /* was 0.5s */
+            opacity 0.55s ease;
+        /* was 0.55s */
+    }
+
+    #menuToggle span:first-child {
+        transform-origin: 0% 0%;
+    }
+
+    #menuToggle span:nth-last-child(2) {
+        transform-origin: 0% 100%;
+    }
+
+    /* 
+ * Turns the hamburger slices into a crossmark when clicked
+ */
+    #menuToggle input:checked~span {
+        opacity: 1;
+        transform: rotate(45deg) translate(1px, 3px);
+        background: #cecece;
+    }
+
+    /* Hides the middle slice */
+    #menuToggle input:checked~span:nth-last-child(3) {
+        opacity: 0;
+        transform: rotate(0deg) scale(0.2, 0.2);
+    }
+
+    #menuToggle input:checked~span:nth-last-child(2) {
+        transform: rotate(-45deg) translate(0, 0);
+    }
+
+    /* Positions the menu absolutely at the top left of the screen */
+    #menu {
+        position: fixed;
+        top: 0;
+        left: 0;
+
+        width: 45vw;
+        height: 100vh;
+        margin: 0;
+        padding: 30px;
+        padding-top: 80px;
+
+        background: $blue;
+        list-style-type: none;
+        /* Stops the flickering of text in Safari */
+        -webkit-font-smoothing: antialiased;
+
+        transform-origin: 0% 0%;
+        transform: translate(-100%, 0);
+
+        transition: transform 0.5s cubic-bezier(0.77, 0.2, 0.05, 1.0);
+    }
+
+    #menu li {
+        padding: 10px 0;
+        font-size: 20px;
+    }
+
+
+    /* Slides the menu in from the left! */
+    #menuToggle input:checked~ul {
+        transform: none;
+    }
+
+    /* menu nav hamburger end */
+
+
+    footer {
+        margin-top: 550px;
+    }
+
+    /* home page for mobile */
+    #cards .cards-container {
+        overflow: hidden;
+        height: 150vh;
+        grid-template-columns: repeat(4, 1fr);
+        ;
+        grid-template-rows: 1fr 2fr 3fr 5fr 5fr 5fr 5fr 1fr;
+        grid-template-areas:
+            '... ... ... ...'
+            '... header header ...'
+            '... desc desc ...'
+            '... activities regions ...'
+            '... location accomodation ...'
+            '... cuisine gallery  ...'
+            '... must-do history ...'
+            '... ... ... ...';
+    }
+
+    #activities .activities-container {
+        height: 130vh;
+        display: grid;
+        grid-template-columns: 1fr 5fr 1fr;
+        grid-template-rows: 1fr 2fr 2fr 4fr 4fr 3fr;
+        grid-template-areas:
+            ' ... ..  ... '
+            '... header  ...'
+            '. picture  .'
+            '. text  .'
+            '. arrow  .';
+
+        .activities-header {
+            justify-self: center;
+        }
+
+        .image-ski {
+            text-align: center;
+            padding-top: 1.5rem;
+            padding-bottom: 2.5rem;
+        }
+    }
+
+    #activities .activities-link-container {
+        grid-template-columns: none;
+        margin-bottom: -500px;
+    }
+
+    #sports .sports-text-container {
+    
+        gap: 1rem;
+      
+        grid-template-columns: 1fr 5fr 1fr;
+        grid-template-rows: 1fr 1fr 2fr 5fr 1fr 2fr 5fr;
+        grid-template-areas:
+            '. ...  .'
+            '. header1  .'
+            '. img1  .'
+            '. text1  .'
+            '. header2  .'
+            '. img2   .'
+            '. text2  .';
+        /*grid template */
+    }
+    
+    #sports .sports-container h1 {
+        font-size: 3.5rem;
+    }
+    #sports .sports-container #top-cover-text {
+        font-size: 1.7rem;
+    }
+
+    #sports .sports-container #top-cover-text {
+        font-size: 1.2rem;
+    }
+
+    #regions-links.regions-link-container {
+        grid-template-rows: repeat(8, 200px);
+    }
+
+    .wrapper {
+        background-color: rgb(243, 247, 247);
+        /* removing unneccessary border and setting width and height to auto so browser doens't do any fun stuff */
+        height: auto;
+        width: auto;
+        margin: 0;
+        font-family: 'Montserrat', sans-serif;
+    
+        /*setting the grid for the page */
+        display: grid;
+        gap: 0.5rem;
+        grid-template-columns: 1fr 5fr 1fr;
+        grid-template-rows: 0.5fr 0.5fr 1fr 1.5fr 2fr 3.6fr 0.5fr 1.5fr 2fr 3.6fr;
+        /*grid template */
+        grid-template-areas:
+            '... ...  ...'
+            '. icon1 .'
+            '. header  .'
+            '. header1  .'
+            '. img1. '
+            '. text1  .'
+            '. ...  .'
+            '. header2  .'
+            '. img2   .'
+            '. text2  .';
+    }
+    header h1 { 
+        text-align: center;
+    }
+}

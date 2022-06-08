@@ -1,0 +1,1385 @@
+/* 
+ Project 3 - cascase style sheet for home page
+ ISTE 240
+ Vito Schuster
+ 28/2/2022 
+*/
+/* fonts imported from font.google.com */
+@import url("https://fonts.googleapis.com/css2?family=Dancing+Script&family=Hubballi&family=Montserrat:wght@200;300;400;500&family=Roboto:wght@300;400;500&display=swap");
+/* removing unneccessary borders and decoration*/
+* {
+  margin: 0;
+  padding: 0;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+a {
+  text-decoration: none;
+  color: black;
+}
+
+a:visited {
+  color: #1a1a1a;
+}
+
+a:active {
+  color: #B9D9B7;
+}
+
+a:hover {
+  color: #B9D9B7;
+}
+
+/*setting height and width to 100% for hero image*/
+body {
+  height: 100vh;
+  width: auto;
+  /* spent too much time fixing invisible borders causing horizontal scroll for some reason so its fixed in this one liner :) */
+  overflow-x: hidden;
+  /* smooth scrolling */
+  scroll-behavior: smooth;
+}
+
+/* || HERO SECTION START */
+#hero {
+  /* adjusting the hero image */
+  background-image: -webkit-gradient(linear, left top, left bottom, from(rgba(0, 0, 0, 0.4)), to(rgba(0, 0, 0, 0.4))), url("../img/home-dolomites.jpg");
+  background-image: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url("../img/home-dolomites.jpg");
+  height: 100%;
+  width: 100%;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+  /*default font and color - i like this color :)*/
+  color: whitesmoke;
+  font-family: 'Hubballi', cursive;
+}
+
+/* grid container - it's easier to work with  */
+#hero .hero-container {
+  display: -ms-grid;
+  display: grid;
+  gap: 0.5rem;
+  height: 100%;
+  font-size: 2.1rem;
+  justify-items: center;
+  -ms-grid-columns: 1fr 0.5rem 3fr 0.5rem 1fr;
+  grid-template-columns: 1fr 3fr 1fr;
+  -ms-grid-rows: 2fr 0.5rem 1fr 0.5rem 2fr 0.5rem 0fr 0.5rem 1fr;
+  grid-template-rows: 2fr 1fr 2fr 0fr 1fr;
+      grid-template-areas: '...   ...    ...' '...  header  ...' '...   desc   ...' '... btn-text ...' '...  arrow   ...';
+}
+
+nav ul li a {
+  font-size: 1.25rem;
+  color: #201c1c;
+  /*whitesmoke */
+}
+
+nav ul li a {
+  font-size: 1.25rem;
+  color: #201c1c;
+  /*whitesmoke */
+}
+
+/* navbar start */
+nav {
+  -ms-grid-row: 1;
+  -ms-grid-column: 1;
+  -ms-grid-column-span: 5;
+  text-transform: uppercase;
+  position: fixed;
+}
+
+nav ul {
+  width: 97vw;
+  height: 5vh;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  -webkit-box-pack: end;
+  -ms-flex-pack: end;
+  justify-content: flex-end;
+  -webkit-box-align: end;
+  -ms-flex-align: end;
+  align-items: flex-end;
+  list-style: none;
+  gap: 1.4rem;
+}
+
+nav ul li:nth-child(1) {
+  text-align: center;
+}
+
+nav ul li:nth-child(2) {
+  text-align: center;
+}
+
+nav ul li:nth-child(3) {
+  text-align: center;
+}
+
+nav ul li a {
+  font-size: 1.25rem;
+  color: whitesmoke;
+}
+
+/* dropdown navbar */
+nav ul li ul {
+  display: none;
+  position: absolute;
+  /*positioning it below activities */
+  left: 49.5%;
+  right: 50%;
+  max-width: 4vw;
+}
+
+/*show on hover */
+nav ul li:hover > ul,
+ul li ul:hover {
+  display: block;
+}
+
+/* #hero nav ul li ul {
+    left: 49%;
+    right: 50%;
+    max-width: 4vw;
+} */
+/* adjusting nav for other pages - it's bugged :( */
+/* #activities nav ul li ul li, #sports nav ul li ul li {
+    padding-top: 0.8rem;
+    text-align: center;
+
+}
+
+#activities nav ul li ul, #sports nav ul li ul {
+    left: 48%;
+    right: 50%;
+    max-width: 5.5vw;
+    text-align: center;
+    background-color: #151527;
+    border-radius: 5px;
+}
+
+#activities nav ul li ul, #sports nav ul li ul {
+    left: 47.7%;
+    right: 50%;
+    padding-left: 1.1rem;
+    padding-top: 0.5rem;
+    max-width: 5.2vw;
+    min-height: 120px;
+    text-align: center;
+} */
+/* navbar end */
+/* heading text adjustment - cursive font */
+#hero .hero-container .hero-header {
+  -ms-grid-row: 2;
+  -ms-grid-column: 2;
+  grid-area: header;
+  /* header grid area */
+  font-family: 'Dancing Script', cursive;
+  font-size: 5.5rem;
+}
+
+/* description text adjustments */
+#hero .hero-container .hero-text {
+  -ms-grid-row: 3;
+  -ms-grid-column: 2;
+  -ms-grid-column-span: 4;
+  grid-area: desc;
+  /* header text grid area */
+  text-transform: uppercase;
+}
+
+/* button text adjustments*/
+#hero .hero-container .button-text {
+  -ms-grid-row: 4;
+  -ms-grid-column: 2;
+  grid-area: btn-text;
+  /* button grid area */
+  font-weight: 500;
+  text-transform: uppercase;
+  color: #e6e4e4;
+  text-align: center;
+}
+
+#hero .hero-container .arrow-container {
+  -ms-grid-row: 5;
+  -ms-grid-column: 2;
+  -ms-grid-column-span: 2;
+  grid-area: arrow;
+  /* arrow grid area */
+}
+
+/* down arrow */
+#hero .hero-container .arrow-container a .arrow {
+  margin-top: -20px;
+  height: 4vw;
+  width: 4vw;
+  border: solid #ebebeb;
+  border-width: 0 1px 1px 0;
+  /*putting right and bottom border on empty div*/
+  transform: rotate(45deg);
+  /* rotating it 45deg clockwise so it makes a down arrow*/
+  -webkit-transform: rotate(45deg);
+}
+
+/* arrow hover action (widen the boarders bty) */
+#hero .hero-container .arrow-container a .arrow:hover {
+  border-width: 0 3px 3px 0;
+}
+
+/* || HERO SECTION END*/
+/* || CARDS SECTION START */
+#cards {
+  background-color: #f3f7f7;
+  /* font-family: 'Oslo', sans-serif;
+   font-weight: 400; */
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 300;
+  height: 100%;
+}
+
+#cards .cards-container {
+  display: -ms-grid;
+  display: grid;
+  gap: 1rem;
+  height: 100%;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  justify-items: center;
+  -ms-grid-columns: 1fr 1rem 1fr 1rem 1fr 1rem 1fr 1rem 1fr 1rem 1fr;
+  grid-template-columns: repeat(6, 1fr);
+  -ms-grid-rows: 2fr 1rem 4fr 1rem 6fr 1rem 10fr 1rem 10fr 1rem 1fr;
+  grid-template-rows: 2fr 4fr 6fr 10fr 10fr 1fr;
+      grid-template-areas: '... ... ... ... ... ...' '... header header header header ...' '... desc desc desc desc ...' '... activities regions location accomodation ...' '... cuisine gallery must-do history ...' '... ... ... ... ... ...';
+}
+
+/* text styling */
+#cards .cards-container .cards-header {
+  -ms-grid-row: 2;
+  -ms-grid-column: 2;
+  grid-area: header;
+  font-size: 4rem;
+  /* text-transform: uppercase; */
+}
+
+#cards .cards-container .text {
+  -ms-grid-row: 3;
+  -ms-grid-column: 2;
+  -ms-grid-column-span: 4;
+  grid-area: desc;
+  text-align: center;
+  font-size: 1.25rem;
+  font-family: 'Montserrat', sans-serif;
+}
+
+/* setting cards to the corresponding grid area */
+#cards .cards-container .card-link1 {
+  -ms-grid-row: 4;
+  -ms-grid-column: 2;
+  grid-area: activities;
+}
+
+#cards .cards-container .card-link2 {
+  -ms-grid-row: 4;
+  -ms-grid-column: 3;
+  grid-area: regions;
+}
+
+#cards .cards-container .card-link3 {
+  -ms-grid-row: 4;
+  -ms-grid-column: 4;
+  grid-area: location;
+}
+
+#cards .cards-container .card-link4 {
+  -ms-grid-row: 4;
+  -ms-grid-column: 5;
+  grid-area: accomodation;
+}
+
+#cards .cards-container .card-link5 {
+  -ms-grid-row: 5;
+  -ms-grid-column: 2;
+  grid-area: cuisine;
+}
+
+#cards .cards-container .card-link6 {
+  -ms-grid-row: 5;
+  -ms-grid-column: 3;
+  grid-area: gallery;
+}
+
+#cards .cards-container .card-link7 {
+  -ms-grid-row: 5;
+  -ms-grid-column: 4;
+  grid-area: must-do;
+}
+
+#cards .cards-container .card-link8 {
+  -ms-grid-row: 5;
+  -ms-grid-column: 5;
+  grid-area: history;
+}
+
+/* cards styling */
+#cards .cards-container a {
+  font-size: 1.7rem;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  border-radius: 10px;
+  width: 270px;
+  height: 230px;
+  background-color: white;
+}
+
+/* hover animation  */
+#cards .cards-container a:hover {
+  background-color: #bad8b6;
+}
+
+/* centering icons */
+#cards .cards-container a .card {
+  text-align: center;
+}
+
+/* || CARDS SECTION END */
+/* || HOME PAGE END */
+/* || ACTIVITIES PAGE START*/
+/* adjusting body font and bgcolor */
+#activities {
+  font-family: 'Montserrat', sans-serif;
+  background-color: #f3f7f7;
+  height: auto;
+}
+
+/* displaying the page as grid because it keeps me sane  */
+#activities .activities-container {
+  height: 92vh;
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: 1fr 3fr 2.5fr 1fr;
+  grid-template-columns: 1fr 3fr 2.5fr 1fr;
+  -ms-grid-rows: 1fr 2fr 2fr 3fr 3fr;
+  grid-template-rows: 1fr 2fr 2fr 3fr 3fr;
+      grid-template-areas: ' ... ... ... ... ' '... ... ... ...' '. header header .' '. text picture .' '. arrow arrow .';
+}
+
+/* adjusting the navbar again because it doesnt work from previous page (I hate css) for this*/
+/* adjusting the navbar again and again*/
+/* #activities .activities-container nav ul {
+    padding-right: 2%;
+    width: 100%;
+    height: 100%;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+} */
+/* adjusting the navbar again and again and again*/
+/* #activities .activities-container nav ul li a {
+    font-size: 1rem;
+    color: whitesmoke;
+} */
+/* i don't want to repeat this */
+/* #activities .activities-container nav ul li a:visited {
+    color: whitesmoke;
+} */
+/* setting the header to grid pos and centering it */
+#activities .activities-container .activities-header {
+  -ms-grid-row: 2;
+  -ms-grid-column: 2;
+  grid-area: header;
+      justify-self: start;
+  -ms-flex-item-align: center;
+      align-self: center;
+}
+
+/* styling header  */
+#activities .activities-container h1 {
+  font-size: 3.5rem;
+  padding-bottom: 1rem;
+  text-transform: capitalize;
+  /* text-decoration: underline; */
+}
+
+/* setting to corresponding grid area (the paragraphs)  */
+#activities .activities-container .text-style {
+  -ms-grid-row: 4;
+  -ms-grid-column: 2;
+  grid-area: text;
+}
+
+.text-style p {
+  -ms-grid-row: 4;
+  -ms-grid-column: 2;
+  grid-area: text;
+  font-weight: 400;
+  font-size: 1.25rem;
+  font-family: 'Montserrat', sans-serif;
+  padding: 0.5rem 0 0.5rem 0;
+}
+
+/* setting the pic to grid area */
+#activities .activities-container .image-ski {
+  -ms-grid-row: 4;
+  -ms-grid-column: 3;
+  grid-area: picture;
+  text-align: end;
+}
+
+/* making image responsive and of course i can not not put a border radius  */
+#activities .activities-container .image-ski img {
+  max-width: 82%;
+  border-radius: 10px;
+  border: 1px solid #dadada;
+}
+
+/* i like arrows so i put one here again - it point to the three pages following  */
+#activities .activities-container .arrow-container {
+  -ms-grid-row: 5;
+  -ms-grid-column: 2;
+  -ms-grid-column-span: 2;
+  grid-area: arrow;
+  -ms-grid-column-align: center;
+      justify-self: center;
+}
+
+/* arrow again */
+#activities .activities-container a .arrow {
+  height: 3.5vw;
+  width: 3.5vw;
+  border: solid #080808;
+  border-width: 0 1px 1px 0;
+  /*putting right and bottom border on empty div*/
+  transform: rotate(45deg);
+  /* rotating it 45deg clockwise so it makes a down arrow*/
+  -webkit-transform: rotate(45deg);
+}
+
+#activities .activities-container .arrow-container a .arrow:hover {
+  border-width: 0 3px 3px 0;
+}
+
+/* || ACTIVITIES LINK PAGE START */
+/* grid for full size links (pictures)  */
+#activities .activities-link-container {
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: 1fr [3];
+  grid-template-columns: repeat(3, 1fr);
+  height: 80vh;
+  justify-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  overflow: hidden;
+  /*this is done to prevent overflow on animations - again a simple fix */
+}
+
+/* adjusting size and background for cover photos  */
+#activities .activities-link-container a {
+  width: 100%;
+  height: 100%;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+}
+
+/*Cover header style*/
+#activities .activities-link-container a .link-image h2 {
+  color: white;
+  font-size: 3rem;
+  text-transform: uppercase;
+  font-weight: 300;
+}
+
+/* I know there is code duplication but i am too lazy to think of another way so here is this */
+/* PICTURE LINKS - changing the backgrounds and adding hover effects (playing with rgbA) */
+.activities-link-container a:nth-child(1) {
+  background-image: -webkit-gradient(linear, left top, left bottom, from(rgba(0, 0, 0, 0.85)), to(rgba(0, 0, 0, 0.8))), url("../img/mountain-biker-cover.jpg");
+  background-image: linear-gradient(rgba(0, 0, 0, 0.85), rgba(0, 0, 0, 0.8)), url("../img/mountain-biker-cover.jpg");
+}
+
+.activities-link-container a:nth-child(1):hover {
+  background-image: -webkit-gradient(linear, left top, left bottom, from(rgba(0, 0, 0, 0.3)), to(rgba(0, 0, 0, 0.3))), url("../img/mountain-biker-cover.jpg");
+  background-image: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), url("../img/mountain-biker-cover.jpg");
+  -webkit-transform: translateY(-10px);
+  transform: translateY(-10px);
+  -webkit-transform: scale(1.03);
+  transform: scale(1.03);
+}
+
+.activities-link-container a:nth-child(2) {
+  background-image: -webkit-gradient(linear, left top, left bottom, from(rgba(0, 0, 0, 0.85)), to(rgba(0, 0, 0, 0.8))), url("../img/skier-cover.jpg");
+  background-image: linear-gradient(rgba(0, 0, 0, 0.85), rgba(0, 0, 0, 0.8)), url("../img/skier-cover.jpg");
+}
+
+.activities-link-container a:nth-child(2):hover {
+  background-image: -webkit-gradient(linear, left top, left bottom, from(rgba(0, 0, 0, 0.3)), to(rgba(0, 0, 0, 0.3))), url("../img/skier-cover.jpg");
+  background-image: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), url("../img/skier-cover.jpg");
+  -webkit-transform: translateY(-10px);
+  transform: translateY(-10px);
+  -webkit-transform: scale(1.03);
+  transform: scale(1.03);
+}
+
+.activities-link-container a:nth-child(3) {
+  background-image: -webkit-gradient(linear, left top, left bottom, from(rgba(0, 0, 0, 0.85)), to(rgba(0, 0, 0, 0.8))), url("../img/rafting-cover.jpg");
+  background-image: linear-gradient(rgba(0, 0, 0, 0.85), rgba(0, 0, 0, 0.8)), url("../img/rafting-cover.jpg");
+}
+
+.activities-link-container a:nth-child(3):hover {
+  background-image: -webkit-gradient(linear, left top, left bottom, from(rgba(0, 0, 0, 0.3)), to(rgba(0, 0, 0, 0.3))), url("../img/rafting-cover.jpg");
+  background-image: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), url("../img/rafting-cover.jpg");
+  -webkit-transform: translateY(-10px);
+  transform: translateY(-10px);
+  -webkit-transform: scale(1.03);
+  transform: scale(1.03);
+}
+
+/* || ACTIVITIES LINK PAGE END */
+/* || ACTIVITIES PAGE END*/
+/* MTB PAGE START */
+/* SPORTS hero START */
+/* || SPORTS TAG FOR 3 PAGES (BIKE,SKI,OTHER SPORTS) */
+/* centering a video - this took a long time to do */
+#sports {
+  /* setting height and width to auto so browser doesnt do any funny stuff */
+  height: auto;
+  width: auto;
+  margin: 0;
+  font-family: 'Montserrat', sans-serif;
+}
+
+/* full size video container */
+.sports-container {
+  position: relative;
+  min-width: 100%;
+  min-height: 100%;
+  background-color: black;
+}
+
+/* min-width of video 100% */
+.sports-container #bg-video {
+  -o-object-fit: cover;
+  object-fit: cover;
+  min-width: 100%;
+  /*video width */
+  max-height: 99.6vh;
+  /*video height for some reason 100 was overflowing */
+  background-attachment: fixed;
+  z-index: 2;
+  /*making the video appear over the bg */
+  opacity: 35%;
+  /*lowering the opacity*/
+}
+
+/* nav START */
+/* #sports .sports-container nav {
+    z-index: 10;
+    position: absolute;
+    height: 70px;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    background-color: rgba(0, 0, 0, 0);
+    position: fixed;
+} */
+/* adjusting the navbar again and again*/
+/* #sports .sports-container nav ul {
+    z-index: 5;
+    padding-right: 2%;
+    width: 100%;
+    height: 100%;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+} */
+/* adjusting the navbar again and again and again*/
+/* #sports .sports-container nav ul li a {
+    font-size: 1rem;
+    color: whitesmoke;
+    color: rgb(209, 209, 209);
+} */
+/* i don't want to repeat this */
+/* #sports .sports-container nav ul li a:visited {
+    color: rgb(209, 209, 209);
+} */
+/* nav END */
+/* header style */
+#sports .sports-container h1 {
+  /*all this code just to center a div .. */
+  position: absolute;
+  top: 41%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+  /*finally over*/
+  color: white;
+  text-transform: uppercase;
+  font-size: 5.6rem;
+  font-weight: 300;
+}
+
+/* the code below is just centering the divs with absolute pos and styling them accordingly */
+#sports .sports-container #top-cover-text {
+  position: absolute;
+  top: 51%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+  /* typography */
+  color: whitesmoke;
+  font-size: 2rem;
+  font-weight: 300;
+  letter-spacing: 1px;
+}
+
+#sports .sports-container #bottom-cover-text {
+  position: absolute;
+  top: 80%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+  /* typography */
+  color: whitesmoke;
+  font-size: 1.5rem;
+  font-weight: 200;
+}
+
+#sports .sports-container .arrow-container {
+  position: absolute;
+  top: 85%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+}
+
+/*another arrow :)*/
+#sports .sports-container .arrow-container a {
+  position: relative;
+}
+
+/* arrow  */
+#sports .sports-container a .arrow {
+  height: 3.5vw;
+  width: 3.5vw;
+  border: solid #dadada;
+  border-width: 0 1px 1px 0;
+  /*putting right and bottom border on empty div*/
+  transform: rotate(45deg);
+  /* rotating it 45deg clockwise so it makes a down arrow*/
+  -webkit-transform: rotate(45deg);
+}
+
+#sports .sports-container .arrow-container a .arrow:hover {
+  border-width: 0 3px 3px 0;
+}
+
+/* sports hero END */
+/*sports lower section start */
+/* grid for easier positioning */
+#sports .sports-text-container {
+  display: -ms-grid;
+  display: grid;
+  gap: 1rem;
+  -ms-grid-columns: 1fr 1rem 3fr 1rem 3fr 1rem 1fr;
+  grid-template-columns: 1fr 3fr 3fr 1fr;
+  -ms-grid-rows: 1fr 1rem 1fr 1rem 5fr 1rem 1fr 1rem 1fr 1rem 5fr 1rem 1fr;
+  grid-template-rows: 1fr 1fr 5fr 1fr 1fr 5fr 1fr;
+      grid-template-areas: '. ... ... .' '. header1 header1 .' '. text1 img1 .' '. ... ... .' '. header2 header2 .' '. img2 text2  .' '. ... ... .';
+  /*grid template */
+}
+
+#sports .sports-text-container .sports-text-header1 {
+  -ms-grid-row: 3;
+  -ms-grid-column: 2;
+  -ms-grid-column-span: 2;
+  grid-area: header1;
+}
+
+#sports .sports-text-container .sports-text1 {
+  -ms-grid-row: 4;
+  -ms-grid-column: 2;
+  grid-area: text1;
+  padding-right: 0.5rem;
+}
+
+#sports .sports-text-container .sports-text1 ul {
+  font-size: 1.2rem;
+  padding-left: 2.2rem;
+  padding-bottom: 0.8rem;
+  padding-top: 0;
+}
+
+/* i dont know if I should put this here */
+/* #sports .sports-text-container .sports-text1 ul li {
+    list-style-type:circle;
+} */
+#sports .sports-text-container .sports-img1 {
+  -ms-grid-row: 4;
+  -ms-grid-column: 3;
+  grid-area: img1;
+}
+
+#sports .sports-text-container .sports-text-header2 {
+  -ms-grid-row: 6;
+  -ms-grid-column: 2;
+  -ms-grid-column-span: 2;
+  grid-area: header2;
+}
+
+#sports .sports-text-container .sports-img2 {
+  -ms-grid-row: 7;
+  -ms-grid-column: 2;
+  grid-area: img2;
+}
+
+#sports .sports-text-container .sports-text2 {
+  -ms-grid-row: 7;
+  -ms-grid-column: 3;
+  grid-area: text2;
+  padding-left: 1rem;
+}
+
+#sports .sports-text-container .sports-text2 ul {
+  font-size: 1.2rem;
+  padding-left: 2.2rem;
+}
+
+#sports .sports-text-container .h2 {
+  font-size: 2.5rem;
+  font-weight: 400;
+}
+
+/*adjusting the images positions, border radius, margin */
+#sports .sports-text-container div img {
+  margin-top: 0.5rem;
+  max-width: 100%;
+  border-radius: 10px;
+}
+
+#sports .sports-text-container .sports-img1 img {
+  max-width: 100%;
+  border-radius: 10px;
+}
+
+#sports .sports-text-container .other-img1 img {
+  max-width: 90%;
+}
+
+#sports .sports-text-container .other-img2 img {
+  max-width: 95%;
+}
+
+/* SPORTS lower section end */
+/* || SPORTS PAGES END */
+/* || REGIONS PAGE START */
+/* grid for full size links (pictures)  */
+#regions-links.regions-link-container {
+  display: -ms-grid;
+  display: grid;
+  height: 100%;
+  -ms-grid-columns: (minmax(360px, 1fr))[auto-fit];
+      grid-template-columns: repeat(auto-fit, minmax(360px, 1fr));
+  -ms-grid-rows: 600px [2];
+  grid-template-rows: repeat(2, 600px);
+  justify-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  overflow-x: hidden;
+  overflow-y: hidden;
+  /*this is done to prevent overflow on animations - again a simple fix */
+}
+
+/* adjusting size and background for cover photos  */
+.regions-link-container a {
+  width: 100%;
+  min-height: 100%;
+  background-size: cover;
+  background-position: center;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+}
+
+/*Cover header style*/
+.regions-link-container a .link-image h2 {
+  font-size: 2rem;
+  font-weight: 300;
+}
+
+/* duplicated code below is for adding bg images and hover effects for the regions
+this was the fastest way to do it in my head, i know it's ugly */
+.regions-link-container a:nth-child(1) {
+  background-image: -webkit-gradient(linear, left top, left bottom, from(rgba(0, 0, 0, 0.85)), to(rgba(0, 0, 0, 0.8))), url("../img/kronplatz_.jpg");
+  background-image: linear-gradient(rgba(0, 0, 0, 0.85), rgba(0, 0, 0, 0.8)), url("../img/kronplatz_.jpg");
+}
+
+.regions-link-container a:nth-child(1):hover {
+  background-image: -webkit-gradient(linear, left top, left bottom, from(rgba(0, 0, 0, 0.3)), to(rgba(0, 0, 0, 0.3))), url("../img/kronplatz_.jpg");
+  background-image: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), url("../img/kronplatz_.jpg");
+  -webkit-transform: translateY(-10px);
+  transform: translateY(-10px);
+  -webkit-transform: scale(1.03);
+  transform: scale(1.03);
+}
+
+.regions-link-container a:nth-child(2) {
+  background-image: -webkit-gradient(linear, left top, left bottom, from(rgba(0, 0, 0, 0.85)), to(rgba(0, 0, 0, 0.8))), url("../img/val-gardena_.jpg");
+  background-image: linear-gradient(rgba(0, 0, 0, 0.85), rgba(0, 0, 0, 0.8)), url("../img/val-gardena_.jpg");
+}
+
+.regions-link-container a:nth-child(2):hover {
+  background-image: -webkit-gradient(linear, left top, left bottom, from(rgba(0, 0, 0, 0.3)), to(rgba(0, 0, 0, 0.3))), url("../img/val-gardena_.jpg");
+  background-image: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), url("../img/val-gardena_.jpg");
+  -webkit-transform: translateY(-10px);
+  transform: translateY(-10px);
+  -webkit-transform: scale(1.03);
+  transform: scale(1.03);
+}
+
+.regions-link-container a:nth-child(3) {
+  background-image: -webkit-gradient(linear, left top, left bottom, from(rgba(0, 0, 0, 0.85)), to(rgba(0, 0, 0, 0.8))), url("../img/alta-badia_.jpg");
+  background-image: linear-gradient(rgba(0, 0, 0, 0.85), rgba(0, 0, 0, 0.8)), url("../img/alta-badia_.jpg");
+}
+
+.regions-link-container a:nth-child(3):hover {
+  background-image: -webkit-gradient(linear, left top, left bottom, from(rgba(0, 0, 0, 0.3)), to(rgba(0, 0, 0, 0.3))), url("../img/alta-badia_.jpg");
+  background-image: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), url("../img/alta-badia_.jpg");
+  -webkit-transform: translateY(-10px);
+  transform: translateY(-10px);
+  -webkit-transform: scale(1.03);
+  transform: scale(1.03);
+}
+
+.regions-link-container a:nth-child(4) {
+  background-image: -webkit-gradient(linear, left top, left bottom, from(rgba(0, 0, 0, 0.85)), to(rgba(0, 0, 0, 0.8))), url("../img/cortina-dampezzo_.jpg");
+  background-image: linear-gradient(rgba(0, 0, 0, 0.85), rgba(0, 0, 0, 0.8)), url("../img/cortina-dampezzo_.jpg");
+}
+
+.regions-link-container a:nth-child(4):hover {
+  background-image: -webkit-gradient(linear, left top, left bottom, from(rgba(0, 0, 0, 0.3)), to(rgba(0, 0, 0, 0.3))), url("../img/cortina-dampezzo_.jpg");
+  background-image: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), url("../img/cortina-dampezzo_.jpg");
+  -webkit-transform: translateY(-10px);
+  transform: translateY(-10px);
+  -webkit-transform: scale(1.03);
+  transform: scale(1.03);
+}
+
+.regions-link-container a:nth-child(5) {
+  background-image: -webkit-gradient(linear, left top, left bottom, from(rgba(0, 0, 0, 0.85)), to(rgba(0, 0, 0, 0.8))), url("../img/3zinnen.jpg");
+  background-image: linear-gradient(rgba(0, 0, 0, 0.85), rgba(0, 0, 0, 0.8)), url("../img/3zinnen.jpg");
+}
+
+.regions-link-container a:nth-child(5):hover {
+  background-image: -webkit-gradient(linear, left top, left bottom, from(rgba(0, 0, 0, 0.3)), to(rgba(0, 0, 0, 0.3))), url("../img/3zinnen.jpg");
+  background-image: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), url("../img/3zinnen.jpg");
+  -webkit-transform: translateY(-10px);
+  transform: translateY(-10px);
+  -webkit-transform: scale(1.03);
+  transform: scale(1.03);
+}
+
+.regions-link-container a:nth-child(6) {
+  background-image: -webkit-gradient(linear, left top, left bottom, from(rgba(0, 0, 0, 0.85)), to(rgba(0, 0, 0, 0.8))), url("../img/val-di-fassa.jpg");
+  background-image: linear-gradient(rgba(0, 0, 0, 0.85), rgba(0, 0, 0, 0.8)), url("../img/val-di-fassa.jpg");
+}
+
+.regions-link-container a:nth-child(6):hover {
+  background-image: -webkit-gradient(linear, left top, left bottom, from(rgba(0, 0, 0, 0.3)), to(rgba(0, 0, 0, 0.3))), url("../img/val-di-fassa.jpg");
+  background-image: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), url("../img/val-di-fassa.jpg");
+  -webkit-transform: translateY(-10px);
+  transform: translateY(-10px);
+  -webkit-transform: scale(1.03);
+  transform: scale(1.03);
+}
+
+.regions-link-container a:nth-child(7) {
+  background-image: -webkit-gradient(linear, left top, left bottom, from(rgba(0, 0, 0, 0.85)), to(rgba(0, 0, 0, 0.8))), url("../img/alpe-di-siusi.jpeg");
+  background-image: linear-gradient(rgba(0, 0, 0, 0.85), rgba(0, 0, 0, 0.8)), url("../img/alpe-di-siusi.jpeg");
+}
+
+.regions-link-container a:nth-child(7):hover {
+  background-image: -webkit-gradient(linear, left top, left bottom, from(rgba(0, 0, 0, 0.3)), to(rgba(0, 0, 0, 0.3))), url("../img/alpe-di-siusi.jpeg");
+  background-image: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), url("../img/alpe-di-siusi.jpeg");
+  -webkit-transform: translateY(-10px);
+  transform: translateY(-10px);
+  -webkit-transform: scale(1.03);
+  transform: scale(1.03);
+}
+
+.regions-link-container a:nth-child(8) {
+  background-image: -webkit-gradient(linear, left top, left bottom, from(rgba(0, 0, 0, 0.85)), to(rgba(0, 0, 0, 0.8))), url("../img/marmolada.jpg");
+  background-image: linear-gradient(rgba(0, 0, 0, 0.85), rgba(0, 0, 0, 0.8)), url("../img/marmolada.jpg");
+}
+
+.regions-link-container a:nth-child(8):hover {
+  background-image: -webkit-gradient(linear, left top, left bottom, from(rgba(0, 0, 0, 0.3)), to(rgba(0, 0, 0, 0.3))), url("../img/marmolada.jpg");
+  background-image: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), url("../img/marmolada.jpg");
+  -webkit-transform: translateY(-10px);
+  transform: translateY(-10px);
+  -webkit-transform: scale(1.03);
+  transform: scale(1.03);
+}
+
+/*regions picture styling*/
+.region .activities-container #image-region {
+  -ms-grid-row: 4;
+  -ms-grid-column: 3;
+  grid-area: picture;
+  text-align: center;
+  text-align: end;
+  -ms-flex-item-align: center;
+      -ms-grid-row-align: center;
+      align-self: center;
+}
+
+/* making image responsive and of course i can not not put a border radius  */
+.region .activities-container #image-region img {
+  -webkit-transform: scale(1.05);
+  transform: scale(1.05);
+  border-radius: 10px;
+  width: 100%;
+  border: 1px solid #dadada;
+}
+
+/* || REGIONS PAGE END */
+/* || LOCATION PAGE START */
+/* #activities {
+    font-family: 'Montserrat', sans-serif;
+    background-color: rgb(243, 247, 247);
+    height: auto;
+} */
+/* minor adjustments for the iFrame map embed - this a pain to deal with */
+.location .embed-map {
+  width: 97%;
+  height: 90%;
+  margin-left: 1.85rem;
+  margin-bottom: 1rem;
+}
+
+.location .embed-map iframe {
+  width: 100%;
+  height: 88vh;
+  border-radius: 10px;
+}
+
+.location .arrow-container {
+  margin-top: 5%;
+}
+
+/* || LOCATION PAGE END */
+/* 2 PAGES  ACCOMODATION, CUISINE*/
+.wrapper {
+  background-color: #f3f7f7;
+  /* removing unneccessary border and setting width and height to auto so browser doens't do any fun stuff */
+  height: auto;
+  width: auto;
+  margin: 0;
+  font-family: 'Montserrat', sans-serif;
+  /*setting the grid for the page */
+  display: -ms-grid;
+  display: grid;
+  gap: 0.5rem;
+  -ms-grid-columns: 1.5fr 0.5rem 2fr 0.5rem 2fr 0.5rem 1.5fr;
+  grid-template-columns: 1.5fr 2fr 2fr 1.5fr;
+  -ms-grid-rows: 0.5rem 2fr 0.5rem 1fr 0.5rem 6fr 0.5rem 1fr 0.5rem 1fr 0.5rem 6fr 0.5rem 1fr;
+  grid-template-rows: 1fr 2fr 1fr 6fr 1fr 1fr 6fr 1fr;
+  /*grid template */
+      grid-template-areas: '... ... ... ...' '. header icon1 .' '. header1 header1 .' '. text1 img1 .' '. ... ... .' '. header2 header2 .' '. img2 text2  .' '. ... ... .';
+}
+
+/*setting the items to the templete */
+/*fixing the nav */
+/* adjusting nav for other pages - it's bugged :( */
+/* nav positioning */
+/* .wrapper nav ul {
+    width: 100vw;
+    height: 6.5vh;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: row;
+            flex-direction: row;
+    -webkit-box-pack: end;
+        -ms-flex-pack: end;
+            justify-content: flex-end;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    list-style: none;
+    gap: 1.4rem;
+    padding-right: 2rem;
+} */
+/* .wrapper nav ul li {
+    position: relative;
+}
+
+.wrapper nav ul li a{
+    font-size: 1rem;
+} */
+/* list of dropdown menu */
+/* .wrapper nav ul li ul {
+    display: none;
+    padding: 0%;
+    margin: 0%;
+    max-width: 5vw;
+    min-height: 9.5vh;
+    text-align: center;
+    border-radius: 5px;
+    padding: 0%; */
+/*adjusting position */
+/* position: absolute;
+    top: 99%;
+    left: 3%; */
+/* border: 1px solid black; */
+/* } */
+/* adjusting padding for dropdown */
+/* .wrapper nav ul li ul li {
+    padding-top: 0.5rem;
+    text-align: center;
+    
+
+} */
+/*displaying the block on hover */
+/* .wrapper nav ul li:hover>ul {
+    display: block;
+} */
+/*setting the visibility*/
+/*
+.wrapper nav ul li ul {
+    left: 47.7%;
+    right: 50%;
+    padding-left: 1.1rem;
+    padding-top: 0.5rem;
+    max-width: 5.2vw;
+    min-height: 120px;
+    text-align: center;
+} */
+/* setting alignment and grid areas below */
+.wrapper header {
+  -ms-grid-row: 2;
+  -ms-grid-column: 2;
+  grid-area: header;
+  -ms-flex-item-align: center;
+      align-self: center;
+}
+
+.wrapper #icon1 {
+  -ms-grid-row: 2;
+  -ms-grid-column: 3;
+  grid-area: icon1;
+  -ms-grid-column-align: center;
+      justify-self: center;
+  -ms-flex-item-align: center;
+      -ms-grid-row-align: center;
+      align-self: center;
+}
+
+.wrapper #h2a {
+  -ms-grid-row: 3;
+  -ms-grid-column: 2;
+  -ms-grid-column-span: 2;
+  grid-area: header1;
+  -ms-flex-item-align: end;
+      align-self: flex-end;
+  padding-bottom: 0.5rem;
+}
+
+.wrapper #text-style1 {
+  -ms-grid-row: 4;
+  -ms-grid-column: 2;
+  grid-area: text1;
+  padding-right: 0.5rem;
+}
+
+.wrapper #img1 {
+  -ms-grid-row: 4;
+  -ms-grid-column: 3;
+  grid-area: img1;
+  -ms-flex-item-align: center;
+      -ms-grid-row-align: center;
+      align-self: center;
+  -ms-grid-column-align: center;
+      justify-self: center;
+}
+
+.wrapper #h2b {
+  -ms-grid-row: 6;
+  -ms-grid-column: 2;
+  -ms-grid-column-span: 2;
+  grid-area: header2;
+  -ms-flex-item-align: end;
+      align-self: flex-end;
+}
+
+.wrapper #img2 {
+  -ms-grid-row: 7;
+  -ms-grid-column: 2;
+  grid-area: img2;
+  -ms-flex-item-align: center;
+      -ms-grid-row-align: center;
+      align-self: center;
+  -ms-grid-column-align: center;
+      justify-self: center;
+}
+
+.wrapper #text-style2 {
+  -ms-grid-row: 7;
+  -ms-grid-column: 3;
+  grid-area: text2;
+  -ms-flex-item-align: center;
+      -ms-grid-row-align: center;
+      align-self: center;
+  padding-left: 2rem;
+}
+
+/*header size */
+header h1 {
+  font-size: 4rem;
+}
+
+/*h2 size */
+.wrapper .h2 h2 {
+  font-size: 2rem;
+  font-weight: 500;
+}
+
+/* making the images responsive and nice looking*/
+.wrapper .img-style img {
+  max-width: 100%;
+  border-radius: 10px;
+}
+
+/* || 2 PAGES  ACCOMODATION, CUISINE END*/
+/* || IMAGE GALLERY START*/
+#gallery {
+  font-family: 'Montserrat', sans-serif;
+}
+
+#gallery nav {
+  /* z-index: 99; */
+  /*possible bg color */
+  /* height: 6.5vh; */
+}
+
+#gallery header {
+  position: relative;
+  top: 2%;
+  margin-left: 5rem;
+}
+
+/* nav positioning */
+/* #gallery nav ul {
+    width: 100vw;
+    height: 6.5vh;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: row;
+            flex-direction: row;
+    -webkit-box-pack: end;
+        -ms-flex-pack: end;
+            justify-content: flex-end;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    list-style: none;
+    gap: 1.4rem;
+    padding-right: 2rem;
+} */
+/* #gallery nav ul li {
+    position: relative;
+} */
+/* #gallery nav ul li a{
+    font-size: 1rem;
+} */
+/*
+nav ul li a {
+    font-size: 1.25rem;
+    color: rgb(32, 28, 28);
+    /*whitesmoke 
+}*/
+/* list of dropdown menu */
+/* #gallery nav ul li ul {
+    display: none;
+    padding: 0%;
+    margin: 0%;
+    max-width: 5vw;
+    min-height: 9.5vh;
+    text-align: center;
+    border-radius: 5px;
+    padding: 0%;
+
+    
+    position: absolute;
+    top: 99%;
+    left: 3%;
+   
+} */
+/* adjusting padding for dropdown */
+/* #gallery nav ul li ul li {
+    padding-top: 0.5rem;
+    text-align: center;
+  
+
+} */
+/*displaying the block on hover */
+/* #gallery nav ul li:hover>ul {
+    display: block;
+} */
+/* image grid */
+.gallery-wrapper {
+  display: -ms-grid;
+  display: grid;
+  gap: 1rem;
+  margin: 3% 3% 3% 3%;
+  -ms-grid-columns: (minmax(240px, 1fr))[auto-fit];
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  grid-auto-rows: 240px;
+}
+
+/* styling the photos themselves */
+.gallery-wrapper .card {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
+  border-radius: 5px;
+  -webkit-transition: all 400ms;
+  transition: all 400ms;
+}
+
+/*the wide card is 2 colums wide */
+.gallery-wrapper .card-wide {
+  -ms-grid-column-span: 2;
+  grid-column: span 2;
+}
+
+/*the tall card is 2 rows wide */
+.gallery-wrapper .card-tall {
+  -ms-grid-row-span: 2;
+  grid-row: span 2;
+}
+
+/* animation for card */
+.gallery-wrapper .card:hover {
+  -webkit-transform: translate(-3px) scale(1.05);
+  transform: translate(-3px) scale(1.05);
+}
+
+/* || REFERENCES Page start */
+.references-container {
+  display: -ms-grid;
+  display: grid;
+  gap: 1rem;
+  -ms-grid-columns: 2fr 1rem 4fr 1rem 2fr;
+  grid-template-columns: 2fr 4fr 2fr;
+  -ms-grid-rows: 1fr 1rem 2fr 1rem 20fr;
+  grid-template-rows: 1fr 2fr 20fr;
+      grid-template-areas: '. . . ' '. header . ' '. list .';
+}
+
+.references-container h2 {
+  padding-top: 1rem;
+}
+
+.references-container .list ul {
+  padding-left: 1rem;
+}
+
+.references-container .list ul li {
+  padding-top: 0.25rem;
+  padding-bottom: 0.25rem;
+}
+
+.references-container header {
+  -ms-grid-row: 2;
+  -ms-grid-column: 2;
+  grid-area: header;
+}
+
+.references-container .list {
+  -ms-grid-row: 3;
+  -ms-grid-column: 2;
+  grid-area: list;
+}
+
+/* || REFERENCES Page end */
+/*additional styling */
+/* showing current navigation list highlighted */
+nav a.current {
+  color: #9dca99;
+}
+
+#activities .activities-container nav ul li a.current {
+  color: #B9D9B7;
+}
+
+#sports .sports-container ul li ul li a {
+  color: #B9D9B7;
+}
+
+#hero .hero-container a:hover {
+  /* color: whitesmoke   ; */
+}
+
+#cards a:hover {
+  /* color: black   ; */
+}
+/*# sourceMappingURL=home.css.map */
